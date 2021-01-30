@@ -44,7 +44,7 @@ if [ "$ss_basic_gfwlist_update" == "1" ];then
 		if [ "$version_gfwlist1" != "$version_gfwlist2" ];then
 			echo_date 检测到新版本gfwlist，开始更新...
 			echo_date 下载gfwlist到临时文件...
-			wget --no-check-certificate --timeout=8 -qO - "$url_main"/gfwlist.conf > /tmp/gfwlist.conf
+			curl -k "$url_main"/gfwlist.conf > /tmp/gfwlist.conf
 			md5sum_gfwlist1=$(md5sum /tmp/gfwlist.conf | sed 's/ /\n/g'| sed -n 1p)
 			if [ "$md5sum_gfwlist1"x = "$md5sum_gfwlist2"x ];then
 				echo_date 下载完成，校验通过，将临时文件覆盖到原始gfwlist文件
@@ -72,7 +72,7 @@ if [ "$ss_basic_chnroute_update" == "1" ];then
 		if [ "$version_chnroute1" != "$version_chnroute2" ];then
 			echo_date 检测到新版本chnroute，开始更新...
 			echo_date 下载chnroute到临时文件...
-			wget --no-check-certificate --timeout=8 -qO - "$url_main"/chnroute.txt > /tmp/chnroute.txt
+			curl -k "$url_main"/chnroute.txt > /tmp/chnroute.txt
 			md5sum_chnroute1=$(md5sum /tmp/chnroute.txt | sed 's/ /\n/g'| sed -n 1p)
 			if [ "$md5sum_chnroute1"x = "$md5sum_chnroute2"x ];then
 				echo_date 下载完成，校验通过，将临时文件覆盖到原始chnroute文件
@@ -99,7 +99,7 @@ if [ "$ss_basic_cdn_update" == "1" ];then
 		if [ "$version_cdn1" != "$version_cdn2" ];then		
 			echo_date 检测到新版本cdn名单，开始更新...		
 			echo_date 下载cdn名单到临时文件...		
-			wget --no-check-certificate --timeout=8 -qO - "$url_main"/cdn.txt > /tmp/cdn.txt		
+			curl -k "$url_main"/cdn.txt > /tmp/cdn.txt		
 			md5sum_cdn1=$(md5sum /tmp/cdn.txt | sed 's/ /\n/g'| sed -n 1p)		
 			if [ "$md5sum_cdn1"x = "$md5sum_cdn2"x ];then		
 				echo_date 下载完成，校验通过，将临时文件覆盖到原始cdn名单文件		
